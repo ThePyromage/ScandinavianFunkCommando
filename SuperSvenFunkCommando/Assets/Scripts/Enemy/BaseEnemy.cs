@@ -5,19 +5,19 @@ using UnityEngine;
 public class BaseEnemy : MonoBehaviour
 {
 	[Tooltip("How long between shots")]
-	[SerializeField] private float m_shootTimer;
+	[SerializeField] protected float m_shootTimer;
 	//the current timer
-	private float m_currentTimer = 0.0f;
+	protected float m_currentTimer = 0.0f;
 
 	[Tooltip("The prefab of the bullet this enemy shoots")]
-	[SerializeField] private GameObject m_bulletPrefab;
+	[SerializeField] protected GameObject m_bulletPrefab;
 	[Tooltip("The location the bullet shoots from")]
-	[SerializeField] private Transform m_bulletSource;
+	[SerializeField] protected Transform m_bulletSource;
 	//whether or not the enemy should be tracking and shooting at Sven
-	private bool m_isActive;
+	protected bool m_isActive;
 
 	//the player
-	private GameObject m_player;
+	protected GameObject m_player;
 
 
 
