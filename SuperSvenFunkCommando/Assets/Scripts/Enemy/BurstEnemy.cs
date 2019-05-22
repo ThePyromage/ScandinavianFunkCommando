@@ -5,7 +5,7 @@ using UnityEngine;
 public class BurstEnemy : BaseEnemy
 {
 	[Tooltip("How many shots will be fired in the burst")]
-	[Range(1,10)][SerializeField] private int m_burstSize;
+	[Range(1,5)][SerializeField] private int m_burstSize;
 	[Tooltip("How long between each shot in the burst")]
 	[SerializeField] private float m_burstDelay;
 
