@@ -20,36 +20,26 @@ public class FPS_Controller : MonoBehaviour
     Vector2 mouse_look;
     Vector2 smoothV;
 
-    GameObject character_GO;
+    GameObject player_go;
+    Rigidbody player_rb;
+    float player_height;
+    float player_height_margin = 0.2f;
 
 	void Start ()
     {
         // Locks and hides the cursor inside the game window
         Cursor.lockState = CursorLockMode.Locked;
 
-        character_GO = transform.root.gameObject;
-	}
+        player_go = transform.root.gameObject;
+        player_rb = player_go.GetComponent<Rigidbody>();
+
+        Collider player_collider = player_go.GetComponent<Collider>();
+        if (player_collider != null)
+            player_height = player_collider.bounds.extents.y + player_height_margin;
+    }
 	
 	void Update ()
     {
-        // Character movement calculation
-        float forward_force = Input.GetAxis("Vertical") * characterForce;
-        float strafe_force = Input.GetAxis("Horizontal") * characterForce;
-
-        if (forward_force != 0 || strafe_force != 0)
-        {
-            Rigidbody rb_object = character_GO.GetComponent<Rigidbody>();
-            Vector3 totalForce = Vector3.zero;
-
-            totalForce += forward_force * character_GO.transform.forward;
-            totalForce += strafe_force * character_GO.transform.right;
-            totalForce *= Time.deltaTime;
-            // Set y-velocity to its current, so that it remains unchanged
-            totalForce.y = rb_object.velocity.y;
-            // Applying character movement
-            rb_object.velocity = totalForce;
-        }
-
         // Camera panning calculation
         Vector2 delta_mouse = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
 
@@ -63,10 +53,38 @@ public class FPS_Controller : MonoBehaviour
 
         // Apply camera movement
         transform.localRotation = Quaternion.AngleAxis(-mouse_look.y, Vector3.right);
-        character_GO.transform.localRotation = Quaternion.AngleAxis(mouse_look.x, character_GO.transform.up);
+        player_go.transform.localRotation = Quaternion.AngleAxis(mouse_look.x, player_go.transform.up);
 
         // Unlocks and unhides the cursor when "Escape" is pressed
         if (Input.GetKeyDown(KeyCode.Escape))
             Cursor.lockState = CursorLockMode.None;
 	}
+
+    // Physics
+    void FixedUpdate()
+    {
+        // Character movement calculation
+        if (player_rb != null)
+        {
+            float forward_force = Input.GetAxis("Vertical") * characterForce;
+            float strafe_force = Input.GetAxis("Horizontal") * characterForce;
+
+            if (forward_force != 0 || strafe_force != 0)
+            {
+                player_rb.drag = 0;
+
+                Vector3 totalForce = Vector3.zero;
+
+                totalForce += forward_force * player_go.transform.forward;
+                totalForce += strafe_force * player_go.transform.right;
+                totalForce *= Time.deltaTime;
+                // Set y-velocity to its current, so that it remains unchanged
+                totalForce.y = player_rb.velocity.y;
+                // Applying character movement
+                player_rb.velocity = totalForce;
+            }
+            else if (Physics.Raycast(player_go.transform.position, -Vector3.up, player_height))
+                player_rb.drag = 100;
+        }
+    }
 }
