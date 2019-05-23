@@ -14,7 +14,7 @@ public class BaseEnemy : MonoBehaviour
 	[Tooltip("The location the bullet shoots from")]
 	[SerializeField] protected Transform m_bulletSource;
 	//whether or not the enemy should be tracking and shooting at Sven
-	protected bool m_isActive;
+	protected bool m_isActive = true;
 
 	[Tooltip("How much score this enemy is worth")]
 	[SerializeField] protected int m_scoreValue;
@@ -39,8 +39,11 @@ public class BaseEnemy : MonoBehaviour
 
 			if (m_currentTimer >= m_shootTimer)
 			{
-				//shoot at player
+				Fire();
+				m_currentTimer = 0.0f;
 			}
 		}
 	}
+
+	virtual protected void Fire() { }
 }

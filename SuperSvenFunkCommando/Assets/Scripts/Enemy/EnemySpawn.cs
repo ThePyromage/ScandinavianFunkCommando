@@ -10,12 +10,12 @@ public class EnemySpawn : MonoBehaviour
 	[Tooltip("How long from Sven entering the room until spawning the enemy")]
 	[SerializeField] private float m_spawnDelay;
 	//the current timer
-	private float m_timer;
+	private float m_timer = 0.0f;
 
 	//whether or not this spawner is active
-	private bool m_isActive;
+	private bool m_isActive = false;
 	//whether or not this spawner has spawned it's enemy
-	private bool m_hasSpawned;
+	private bool m_hasSpawned = false;
 
 	/// <summary>
 	/// Function to spawn the enemy

@@ -9,15 +9,12 @@ public class BurstEnemy : BaseEnemy
 	[Tooltip("How long between each shot in the burst")]
 	[SerializeField] private float m_burstDelay;
 
-	// Use this for initialization
-	void Start ()
+	override protected void Fire()
 	{
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-		
+		Debug.Log("Burst enemy fire!");
+		//TODO, make this burst
+		Vector3 lookPos = m_player.transform.position - m_bulletSource.position;
+		Quaternion targetRotation = Quaternion.LookRotation(lookPos);
+		Instantiate(m_bulletPrefab, m_bulletSource.position, targetRotation);
 	}
 }
