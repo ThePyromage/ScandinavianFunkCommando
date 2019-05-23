@@ -16,10 +16,11 @@ public class BaseEnemy : MonoBehaviour
 	//whether or not the enemy should be tracking and shooting at Sven
 	protected bool m_isActive;
 
-	//the player
+	[Tooltip("How much score this enemy is worth")]
+	[SerializeField] protected int m_scoreValue;
+
+	//Sven
 	protected GameObject m_player;
-
-
 
 	// Use this for initialization
 	void Start ()
