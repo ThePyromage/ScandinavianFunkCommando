@@ -35,7 +35,20 @@ public class Object_Shatter : MonoBehaviour
             Destroy(object_instance);
             object_instance = Instantiate(shatteredObject, transform.position, Quaternion.identity);
 
+            Physics_Attacher physics_Attacher = object_instance.GetComponent<Physics_Attacher>();
+            physics_Attacher.Initiate();
+
+            // Need to fine tune
+            Collider[] colliders = Physics.OverlapSphere(Vector3.zero, 30);
+            foreach (Collider c in colliders)
+            {
+                Rigidbody rb = c.GetComponent<Rigidbody>();
+                if (rb != null)
+                    rb.AddExplosionForce(1000, Vector3.zero, 30, 3, ForceMode.Impulse);
+            }
+
             is_shattered = true;
         }
+
     }
 }
