@@ -12,6 +12,9 @@ public class Collider_Attacher : MonoBehaviour
 
         foreach (MeshFilter m in all_meshes)
         {
+            if (m.name.Contains("stairs"))
+                continue;
+
             MeshCollider collider = m.gameObject.AddComponent<MeshCollider>();
 
             if (parent_script != null)
