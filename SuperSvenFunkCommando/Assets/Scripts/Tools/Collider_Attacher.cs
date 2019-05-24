@@ -8,10 +8,18 @@ public class Collider_Attacher : MonoBehaviour
 
     private void Start()
     {
-        MeshCollider collider = gameObject.AddComponent<MeshCollider>();
+        MeshFilter[] all_meshes = GetComponentsInChildren<MeshFilter>();
 
-        collider.convex = true;
-        collider.isTrigger = true;
+        foreach (MeshFilter m in all_meshes)
+        {
+            MeshCollider collider = m.gameObject.AddComponent<MeshCollider>();
+
+            if (parent_script != null)
+            {
+                collider.convex = true;
+                collider.isTrigger = true;
+            }
+        }
     }
 
     public void Link (Object_Shatter os)
@@ -21,6 +29,7 @@ public class Collider_Attacher : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        parent_script.ShatterObject(other);
+        if (parent_script != null)
+            parent_script.ShatterObject(other);
     }
 }
