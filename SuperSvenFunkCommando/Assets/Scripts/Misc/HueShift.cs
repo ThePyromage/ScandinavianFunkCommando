@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HueShift : MonoBehaviour
 {
-	[SerializeField] private float m_shiftSpeed;
+	[Range(0, 10)][SerializeField] private float m_shiftSpeed;
 	// Update is called once per frame
 	void Update ()
 	{
