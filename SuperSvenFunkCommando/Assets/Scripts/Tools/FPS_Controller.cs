@@ -85,6 +85,8 @@ public class FPS_Controller : MonoBehaviour
             }
             else if (Physics.Raycast(player_go.transform.position, -Vector3.up, player_height))
                 player_rb.drag = 100;
+            else
+                player_rb.drag = 0;
         }
     }
 }
