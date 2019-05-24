@@ -7,7 +7,7 @@ public class Physics_Attacher : MonoBehaviour
     List<MeshRenderer> meshes;
 
 	// Use this for initialization
-	void Start ()
+	public void Initiate ()
     {
         meshes = new List<MeshRenderer>(GetComponentsInChildren<MeshRenderer>());
 
@@ -16,12 +16,7 @@ public class Physics_Attacher : MonoBehaviour
             mr.gameObject.AddComponent<Rigidbody>();
             MeshCollider collider = mr.gameObject.AddComponent<MeshCollider>();
             collider.convex = true;
+            mr.tag = "Shard";
         }
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		
 	}
 }

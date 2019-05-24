@@ -667,6 +667,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shatteredObject: {fileID: 1867960924300978, guid: a8cfced33f26437449507b70bf7d0d07,
     type: 2}
+  explosion_power: 10
+  explosion_range: 5
 --- !u!4 &1579021794
 Transform:
   m_ObjectHideFlags: 0
@@ -674,7 +676,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1579021791}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.83, y: 0.42, z: 4.07}
+  m_LocalPosition: {x: 3.13, y: 0, z: 2.98}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 119359103}
