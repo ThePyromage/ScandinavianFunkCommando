@@ -35,6 +35,10 @@ public class EnemySpawn : MonoBehaviour
 			{
 				Debug.Log(gameObject.name.ToString() + " has spawned!");
 				m_enemy.SetActive(true);
+				if(m_enemy.GetComponent<BaseEnemy>() != null)
+				{
+					m_enemy.GetComponent<BaseEnemy>().Spawn();
+				}
 				m_isActive = false;
 				m_hasSpawned = true;
 			}
