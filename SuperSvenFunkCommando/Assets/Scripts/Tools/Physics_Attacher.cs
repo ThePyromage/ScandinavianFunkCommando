@@ -16,6 +16,7 @@ public class Physics_Attacher : MonoBehaviour
             mr.gameObject.AddComponent<Rigidbody>();
             MeshCollider collider = mr.gameObject.AddComponent<MeshCollider>();
             collider.convex = true;
+            mr.tag = "Shard";
         }
 	}
 }
