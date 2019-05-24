@@ -724,8 +724,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterForce: 300
-  mouseSensitivity: 5
-  mouseSmoothing: 2
+  mouseSensitivity: 1
+  mouseSmoothing: 1
   pitchMinimum: 60
   pitchMaximum: 60
 --- !u!81 &2109678312
