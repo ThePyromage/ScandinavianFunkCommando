@@ -18,14 +18,11 @@ public class Object_Shatter : MonoBehaviour
     {
         if (transform.childCount == 1)
         {
-            object_instance = transform.GetChild(0).gameObject;
-
-            BoxCollider box_collider = gameObject.AddComponent<BoxCollider>();
+            object_instance = transform.GetChild(0).gameObject; 
             MeshRenderer rend = object_instance.GetComponent<MeshRenderer>();
 
-            box_collider.isTrigger = true;
-            box_collider.center = object_instance.transform.localPosition + Vector3.up * rend.bounds.extents.y;
-            box_collider.size = rend.bounds.size;
+            Collider_Attacher ca = object_instance.AddComponent<Collider_Attacher>();
+            ca.Link(this);
         }
         else
             Debug.Log("Object Shatterer should only have one child object");
@@ -33,15 +30,15 @@ public class Object_Shatter : MonoBehaviour
         is_shattered = false;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void ShatterObject(Collider other)
     {
         if (is_shattered == false)
         {
             Destroy(object_instance);
-            object_instance = Instantiate(shatteredObject, transform.position, Quaternion.identity);
+            object_instance = Instantiate(shatteredObject, transform.position, transform.rotation);
             object_instance.GetComponent<Physics_Attacher>().Initiate();
 
-            Vector3 explosion_position = other.transform.childCount == 1 ? other.transform.GetChild(0).position : other.transform.position;
+            Vector3 explosion_position = other.transform.GetChild(0).position;
 
             Collider[] colliders = Physics.OverlapSphere(explosion_position, explosion_range);
             foreach (Collider c in colliders)
@@ -53,6 +50,5 @@ public class Object_Shatter : MonoBehaviour
 
             is_shattered = true;
         }
-
     }
 }
