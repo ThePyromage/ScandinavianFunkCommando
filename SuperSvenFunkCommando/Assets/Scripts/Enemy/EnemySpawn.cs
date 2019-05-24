@@ -34,7 +34,7 @@ public class EnemySpawn : MonoBehaviour
 			if(m_timer >= m_spawnDelay)
 			{
 				Debug.Log(gameObject.name.ToString() + " has spawned!");
-				//TODO spawn enemy
+				m_enemy.SetActive(true);
 				m_isActive = false;
 				m_hasSpawned = true;
 			}
