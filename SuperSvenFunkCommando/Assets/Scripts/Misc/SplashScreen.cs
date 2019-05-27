@@ -20,11 +20,11 @@ public class SplashScreen : MonoBehaviour
     //public States[] states_array;
 
     private VideoPlayer video_player;
-    private Image splash_screen;
-    private int state_index;
-    private bool is_running;
-    private float state_timer;
-    private int phase_index;
+    //private Image splash_screen;
+    //private int state_index;
+    //private bool is_running;
+    //private float state_timer;
+    //private int phase_index;
 
     // Use this for initialization
     void Start ()
@@ -33,11 +33,11 @@ public class SplashScreen : MonoBehaviour
 
         video_player = gameObject.GetComponent<VideoPlayer>();
         video_player.loopPointReached += VideoEnded;
-        splash_screen = gameObject.GetComponent<Image>();
-        state_index = 0;
-        is_running = false;
-        state_timer = 0;
-        phase_index = 0;
+        //splash_screen = gameObject.GetComponent<Image>();
+        //state_index = 0;
+        //is_running = false;
+        //state_timer = 0;
+        //phase_index = 0;
     }
 	
 	// Update is called once per frame
@@ -120,7 +120,7 @@ public class SplashScreen : MonoBehaviour
     void VideoEnded(UnityEngine.Video.VideoPlayer vp)
     {
         vp.Stop();
-        is_running = true;
+        //is_running = true;
 
         mainMenu.SetActive(true);
     }

@@ -6,7 +6,7 @@ public class Collider_Attacher : MonoBehaviour
 {
     Object_Shatter parent_script = null;
 
-    private void Start()
+    void Start()
     {
         MeshFilter[] all_meshes = GetComponentsInChildren<MeshFilter>();
 
@@ -25,12 +25,12 @@ public class Collider_Attacher : MonoBehaviour
         }
     }
 
-    public void Link (Object_Shatter os)
+    public void Link (Object_Shatter obj)
     {
-        parent_script = os;
+        parent_script = obj;
 	}
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (parent_script != null)
             parent_script.ShatterObject(other);

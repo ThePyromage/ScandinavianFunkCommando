@@ -19,7 +19,6 @@ public class Object_Shatter : MonoBehaviour
         if (transform.childCount == 1)
         {
             object_instance = transform.GetChild(0).gameObject; 
-            MeshRenderer rend = object_instance.GetComponent<MeshRenderer>();
 
             Collider_Attacher ca = object_instance.AddComponent<Collider_Attacher>();
             ca.Link(this);
